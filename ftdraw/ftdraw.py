@@ -5,8 +5,6 @@ from reportlab.lib.units import inch
 
 from ftutils import getoutputpath 
 
-
-
 def hello(c):
     c.drawString(100,100,"Hello World")
 
@@ -67,12 +65,13 @@ def create_form(filename, date, amount, receiver):
     form_canvas.save()
 
 def textobject_demo():
-    my_canvas = canvas.Canvas(getoutputpath("txt_obj.pdf"), pagesize=A4)
+    my_canvas = canvas.Canvas(getoutputpath("txt_obj_test.pdf"), landscape(pagesize=A4))
     # Create textobject
     textobject = my_canvas.beginText()
     #
-    import pprint
-    pprint.pprint(dir(textobject))
+    if False:
+        import pprint
+        pprint.pprint(dir(textobject))
     #
     # Set text location (x, y)
     textobject.setTextOrigin(10, 730)
@@ -88,26 +87,42 @@ def textobject_demo():
     my_canvas.drawText(textobject)
     my_canvas.save()
 
-def main():
-    c = canvas.Canvas(getoutputpath('myfile0.pdf'), pagesize=landscape(A4))
-    c.setStrokeColor(green)
-    width, height = landscape(A4) 
-    hello(c)
-    star(c, "Sirius", "a start", 200, 200, 5);
-    ###########################
-    u = inch/10
-    c.setFillColor(tan)
-    c.rect(10*u,0,20*u,10*u, stroke=1, fill=1)
-    c.setFillColor(black)
-    c.rect(23*u,0,8*u,10*u,fill=1)
-    ###########################
-    c.showPage()
+def rect_demo():
+    c = canvas.Canvas(getoutputpath("txt_obj_test.pdf"), landscape(pagesize=A4))
+    ht = 75
+    wd = 75
+    for y in [100, 200, 300, 400]:
+        for x in [100, 200, 300, 400, 500, 600]:
+            c.rect(x , y , ht , wd , stroke=1 , fill=0)
+
     c.showPage()
     c.save()
+
+def main():
+    if False:
+        c = canvas.Canvas(getoutputpath('myfile0.pdf'), pagesize=landscape(A4))
+        c.setStrokeColor(green)
+        width, height = landscape(A4) 
+        hello(c)
+        star(c, "Sirius", "a start", 200, 200, 5);
+        ###########################
+        u = inch/10
+        c.setFillColor(tan)
+        c.rect(10*u,0,20*u,10*u, stroke=1, fill=1)
+        c.setFillColor(black)
+        c.rect(23*u,0,8*u,10*u,fill=1)
+        ###########################
+        c.showPage()
+        c.showPage()
+        c.save()
+        #
+        create_form("formexample.pdf", "3-6-2019", "20.00", "Fred")
     #
-    create_form("formexample.pdf", "3-6-2019", "20.00", "Fred")
-    #
+    width, height = landscape(A4) 
+    print("Width: " + str(width))
+    print("Height: " + str(height))
     textobject_demo()
+    rect_demo()
 
 if __name__ == "__main__":
     main()
