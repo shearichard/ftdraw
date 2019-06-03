@@ -1,3 +1,11 @@
+'''
+A module of utilty functions for the 
+ftdraw project.
+
+The primary purpose of this module is to
+to 'de-clutter' the primary module
+'''
+
 from datetime import datetime
 import os
 import string
@@ -7,6 +15,11 @@ import math
 RELATIVEPATHTOOUTPUT = '''../ftoutput'''
 
 def timestampfilename(fname):
+    '''
+    Given a file name, such as 'a.txt' a time
+    stamped version of the name is returned such
+    as this 'a-20120115T143929.txt'
+    '''
     d=datetime.now()
     isonow = d.strftime('%Y%m%dT%H%M%S') #'outputs something like : 20120115T143929'
     #
@@ -21,13 +34,26 @@ def timestampfilename(fname):
     return fn_stamped
 
 def getoutputpath(fname):
+    '''
+    Takes the file name provided in the `fname` argument,
+    embeds a timestamp within it and creates a path for
+    that file name to the standard output directory
+    '''
     fnamestamped = timestampfilename(fname)
     return os.path.join(RELATIVEPATHTOOUTPUT, fnamestamped)
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    '''
+    Produces a random string of, by default, uppercase letters and digits
+    '''
     return ''.join(random.choice(chars) for _ in range(size))
 
 def formatxy(x, y):
+    '''
+    Produces a string intended to display a rounded version
+    of an x and y coordinate like this `100/200` where x 
+    is 100 and y is 200
+    '''
     return '{:d}/{:d}'.format(math.floor(x), math.floor(y))
 
 ############################################################################################   

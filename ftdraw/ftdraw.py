@@ -1,3 +1,9 @@
+'''
+Draws diagrams to a PDF document.
+
+The documents can be broadly described as 'boxes, linked
+by lines, in which text is written'
+'''
 import math 
 
 from reportlab.pdfgen import canvas
@@ -8,6 +14,10 @@ from reportlab.lib.units import inch
 from ftutils import getoutputpath, id_generator, formatxy 
 
 def textobject_demo():
+    '''
+    This is only here to demonstrate how a Docstring is done. It should
+    be removed quite soon
+    '''
 
     my_canvas = canvas.Canvas(getoutputpath("txt_obj_test.pdf"), landscape(pagesize=A4))
     # Create textobject
@@ -32,6 +42,12 @@ def textobject_demo():
     my_canvas.save()
 
 def write_interior_text(c, x, y):
+    '''
+    Writes text in a given location. Intended
+    to be used to write text into the middle
+    of where a rectangle will appear in the
+    output
+    '''
 
     textobject = c.beginText()
 
@@ -42,7 +58,13 @@ def write_interior_text(c, x, y):
 
     c.drawText(textobject)
 
-def rect_demo():
+def draw_rect_sandbox():
+    '''
+    Outputs a grid of boxes and places some text 
+    in the middle of which box
+
+    The output document is A4 landscape.
+    '''
 
     c = canvas.Canvas(getoutputpath("txt_obj_test.pdf"), landscape(pagesize=A4))
     ht = 40
@@ -61,10 +83,9 @@ def rect_demo():
 def main():
 
     width, height = landscape(A4) 
-    print("Width: " + str(width))
-    print("Height: " + str(height))
-    textobject_demo()
-    rect_demo()
+    print("Document Width : " + str(width))
+    print("Document Height : " + str(height))
+    draw_rect_sandbox()
 
 if __name__ == "__main__":
     main()
