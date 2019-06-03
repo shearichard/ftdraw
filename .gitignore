@@ -1,5 +1,6 @@
 # PDF output files
 .pdf
+ftoutput/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
