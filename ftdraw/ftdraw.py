@@ -34,11 +34,11 @@ def textobject_demo():
 def rect_demo():
 
     c = canvas.Canvas(getoutputpath("txt_obj_test.pdf"), landscape(pagesize=A4))
-    ht = 75
-    wd = 75 / 1.6
-    for x in range(50, 600, math.floor(wd * 2.0)):
-        for y in range(50, 500, math.floor(ht * 1.6)):
-            print("x = ", x, ". y = ", y)
+    ht = 40
+    wd = ht / 1.6
+    for x in range(50, 750, math.floor(wd * 2.0)):
+        for y in range(50, 500, math.floor(ht * 1.2)):
+            print("x = ", x, ". y = ", y, ". ht = ", ht, ". wd = ", wd)
             c.rect(x , y , ht , wd , stroke=1 , fill=0)
 
     c.showPage()
