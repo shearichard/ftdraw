@@ -1,7 +1,7 @@
 '''
 Draws diagrams to a PDF document.
 
-The documents can be broadly described as 'boxes, linked
+The diagrams can be broadly described as 'boxes, linked
 by lines, in which text is written'
 '''
 import math 
