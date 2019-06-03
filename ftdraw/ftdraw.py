@@ -5,7 +5,7 @@ from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.colors import tan, black, green, red
 from reportlab.lib.units import inch
 
-from ftutils import getoutputpath 
+from ftutils import getoutputpath, id_generator, formatxy 
 
 def textobject_demo():
 
@@ -31,15 +31,29 @@ def textobject_demo():
     my_canvas.drawText(textobject)
     my_canvas.save()
 
+def write_interior_text(c, x, y):
+
+    textobject = c.beginText()
+
+    textobject.setTextOrigin(x, y)
+    textobject.setFont('Times-Roman', 10)
+    textobject.setFillColor(red)
+    textobject.textLine(formatxy(x,y))
+
+    c.drawText(textobject)
+
 def rect_demo():
 
     c = canvas.Canvas(getoutputpath("txt_obj_test.pdf"), landscape(pagesize=A4))
     ht = 40
     wd = ht / 1.6
-    for x in range(50, 750, math.floor(wd * 2.0)):
-        for y in range(50, 500, math.floor(ht * 1.2)):
+    max_x = 300 # 650
+    max_y = 200 # 400
+    for x in range(50, max_x, math.floor(wd * 2.0)):
+        for y in range(50, max_y, math.floor(ht * 1.2)):
             print("x = ", x, ". y = ", y, ". ht = ", ht, ". wd = ", wd)
             c.rect(x , y , ht , wd , stroke=1 , fill=0)
+            write_interior_text(c, (x + (wd*0.3)), (y + ht - (ht*0.7)))
 
     c.showPage()
     c.save()

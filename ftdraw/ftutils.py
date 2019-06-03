@@ -1,5 +1,8 @@
 from datetime import datetime
 import os
+import string
+import random
+import math
 
 RELATIVEPATHTOOUTPUT = '''../ftoutput'''
 
@@ -20,6 +23,12 @@ def timestampfilename(fname):
 def getoutputpath(fname):
     fnamestamped = timestampfilename(fname)
     return os.path.join(RELATIVEPATHTOOUTPUT, fnamestamped)
+
+def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
+    return ''.join(random.choice(chars) for _ in range(size))
+
+def formatxy(x, y):
+    return '{:d}/{:d}'.format(math.floor(x), math.floor(y))
 
 ############################################################################################   
 ############################################################################################   
