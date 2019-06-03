@@ -3,6 +3,10 @@ from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.colors import tan, black, green, red
 from reportlab.lib.units import inch
 
+from ftutils import getoutputpath 
+
+
+
 def hello(c):
     c.drawString(100,100,"Hello World")
 
@@ -47,7 +51,7 @@ def create_form(filename, date, amount, receiver):
     @param amount: The amount owed
     @param receiver: The person who received the amount owed
     """
-    form_canvas = canvas.Canvas(filename, pagesize=A4)
+    form_canvas = canvas.Canvas(getoutputpath(filename), pagesize=A4)
     form_canvas.setLineWidth(.3)
     form_canvas.setFont('Helvetica', 12)
     form_canvas.drawString(30, 750,'OFFICIAL COMMUNIQUE')
@@ -63,7 +67,7 @@ def create_form(filename, date, amount, receiver):
     form_canvas.save()
 
 def textobject_demo():
-    my_canvas = canvas.Canvas("txt_obj.pdf", pagesize=A4)
+    my_canvas = canvas.Canvas(getoutputpath("txt_obj.pdf"), pagesize=A4)
     # Create textobject
     textobject = my_canvas.beginText()
     #
@@ -85,7 +89,7 @@ def textobject_demo():
     my_canvas.save()
 
 def main():
-    c = canvas.Canvas('myfile0.pdf', pagesize=landscape(A4))
+    c = canvas.Canvas(getoutputpath('myfile0.pdf'), pagesize=landscape(A4))
     c.setStrokeColor(green)
     width, height = landscape(A4) 
     hello(c)
