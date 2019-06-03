@@ -8,8 +8,6 @@ def timestampfilename(fname):
     isonow = d.strftime('%Y%m%dT%H%M%S') #'outputs something like : 20120115T143929'
     #
     arr_fname_in = fname.split(".")
-    print(fname)
-    print(arr_fname_in)
     #
     arr_fname_out = arr_fname_in[:1]
     arr_fname_out.extend(["-" + isonow + "."])
