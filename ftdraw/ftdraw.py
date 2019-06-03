@@ -61,9 +61,9 @@ def write_interior_text(c, x, y):
 def draw_rect_sandbox():
     '''
     Outputs a grid of boxes and places some text 
-    in the middle of which box
+    in the middle of each box
 
-    The output document is A4 landscape.
+    The output document is hardcoded as A4 landscape.
     '''
 
     c = canvas.Canvas(getoutputpath("txt_obj_test.pdf"), landscape(pagesize=A4))
