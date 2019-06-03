@@ -68,7 +68,7 @@ def draw_rect_sandbox():
 
     c = canvas.Canvas(getoutputpath("txt_obj_test.pdf"), landscape(pagesize=A4))
     ht = 40
-    wd = ht / 1.6
+    wd = ht * 1.6
     max_x = 300 # 650
     max_y = 200 # 400
     idx_x = 0
@@ -78,7 +78,7 @@ def draw_rect_sandbox():
         for y in range(50, max_y, math.floor(ht * 1.2)):
             if idx_x == 0:
                 print("x = ", x, ". y = ", y, ". ht = ", ht, ". wd = ", wd)
-                c.rect(x , y , ht , wd , stroke=1 , fill=0)
+                c.rect(x , y , wd , ht , stroke=1 , fill=0)
                 write_interior_text(c, (x + (wd*0.3)), (y + ht - (ht*0.7)))
                 lst_arr_bx.append({'x': x, 'y': y, 'ht': ht, 'wd': wd })
             idx_y += 1
